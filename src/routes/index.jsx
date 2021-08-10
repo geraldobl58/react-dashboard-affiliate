@@ -5,6 +5,7 @@ import { LinearProgress } from '@material-ui/core';
 
 const Dashboard = lazy(() => import('../pages/Dashboard'));
 const Commissions = lazy(() => import('../pages/Commissions'));
+const Payments = lazy(() => import('../pages/Payments'));
 
 const Routes = () => (
   <Router>
@@ -12,6 +13,7 @@ const Routes = () => (
       <Switch>
         <Route exact path="/" component={Dashboard} />
         <Route exact path="/comissoes" component={Commissions} />
+        <Route exact path="/pagamentos" component={Payments} />
       </Switch>
     </Suspense>
   </Router>

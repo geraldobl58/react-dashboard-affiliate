@@ -5,6 +5,7 @@ import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import PaymentIcon from '@material-ui/icons/Payment';
 
 import { Container } from './styles';
 
@@ -25,6 +26,14 @@ export const Links = (
             <MonetizationOnIcon />
           </ListItemIcon>
           <ListItemText primary="Comissões" />
+        </ListItem>
+      </Link>
+      <Link to="/pagamentos">
+        <ListItem button>
+          <ListItemIcon>
+            <PaymentIcon />
+          </ListItemIcon>
+          <ListItemText primary="Pagamentos" />
         </ListItem>
       </Link>
     </Container>
