@@ -1,0 +1,24 @@
+{
+  "comissoes": [
+    {
+      "id": 1,
+      "tipo": "Marca",
+      "descricao": "Cupom",
+      "rede": 0.50,
+      "publisher": 6.0,
+      "motivo": "Dia dos Pais",
+      "dataInicial": "2021-08-10",
+      "dataFinal": "2021-08-17"
+    },
+    {
+      "id": 2,
+      "tipo": "Sku",
+      "descricao": "Cupomania",
+      "rede": 1.50,
+      "publisher": 7.0,
+      "motivo": "Dia dos Mães",
+      "dataInicial": "2021-08-15",
+      "dataFinal": "2021-08-20"
+    }
+  ]
+}

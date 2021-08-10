@@ -37,6 +37,7 @@ const Appshell = ({ children }) => {
       <AppBar
         position="absolute"
         className={clsx(classes.appBar, open && classes.appBarShift)}
+        style={{ backgroundColor: '#FFF', color: '#06A77C' }}
       >
         <Toolbar className={classes.toolbar}>
           <IconButton
