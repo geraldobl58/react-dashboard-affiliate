@@ -71,17 +71,9 @@ const Appshell = ({ children }) => {
         open={open}
       >
         <div style={{ position: 'fixed', zIndex: '-99' }}>
-          <h3
-            style={{
-              textTransform: 'uppercase',
-              fontSize: '20px',
-              justifyContent: 'center',
-              marginLeft: '20px',
-              fontWeight: 'bold',
-            }}
-          >
-            <span>Affiliate Dash.</span>
-          </h3>
+          <div style={{ marginTop: '6px', marginLeft: '10px' }}>
+            <img src="/logo.svg" alt="" />
+          </div>
         </div>
         <div className={classes.toolbarIcon}>
           <IconButton onClick={handleDrawerClose}>
