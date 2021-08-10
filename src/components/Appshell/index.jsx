@@ -67,6 +67,7 @@ const Appshell = ({ children }) => {
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
         }}
+        style={{ height: '100vh' }}
         open={open}
       >
         <div style={{ position: 'fixed', zIndex: '-99' }}>
@@ -79,7 +80,7 @@ const Appshell = ({ children }) => {
               fontWeight: 'bold',
             }}
           >
-            <h3>Logo</h3>
+            <span>Affiliate Dash.</span>
           </h3>
         </div>
         <div className={classes.toolbarIcon}>
