@@ -20,3 +20,9 @@ export const ContainerSeparator = styled.div`
 export const ContainerPaper = styled(Paper)`
   padding: 10px;
 `;
+
+export const ContainerHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;

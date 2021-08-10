@@ -3,8 +3,10 @@ import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
 
 import Appshell from '../../components/Appshell';
+import ButtonCustom from '../../components/ButtonCustom';
 
 import {
+  ContainerHeader,
   ContainerMain,
   ContainerSeparator,
   ContainerWrapper,
@@ -12,7 +14,11 @@ import {
 
 const Commissions = () => (
   <ContainerWrapper>
-    <Appshell>Comissões</Appshell>
+    <Appshell>
+      <ContainerHeader>
+        Comissões <ButtonCustom color="secondary">Criar Comissão</ButtonCustom>
+      </ContainerHeader>
+    </Appshell>
     <ContainerMain>
       <ContainerSeparator />
       <Grid container spacing={4}>
