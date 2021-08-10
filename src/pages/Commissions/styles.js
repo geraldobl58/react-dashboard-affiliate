@@ -8,3 +8,12 @@ export const ContainerButton = styled.div`
 export const DividerSeparator = styled.div`
   min-height: 24px;
 `;
+
+export const LinkCustom = styled.div`
+  display: block;
+
+  a {
+    color: #fff;
+    font-weight: bold;
+  }
+`;

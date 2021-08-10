@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   Grid,
@@ -34,7 +35,7 @@ import {
   ContainerWrapper,
 } from '../../components/Container';
 
-import { ContainerButton, DividerSeparator } from './styles';
+import { ContainerButton, DividerSeparator, LinkCustom } from './styles';
 
 const Commissions = () => {
   const [commissions, setCommissions] = useState([]);
@@ -91,10 +92,30 @@ const Commissions = () => {
       </Appshell>
       <ContainerMain>
         <ContainerSeparator />
+        {commissions.length === 0 && (
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <LinkCustom>
+                <Alert
+                  onClose={() => {}}
+                  severity="warning"
+                  style={{ backgroundColor: '#d65e01', color: '#fff' }}
+                >
+                  Não existe Comissão cadastrada,{' '}
+                  <Link to="/"> crie agora uma comissão padrão</Link>
+                </Alert>
+              </LinkCustom>
+            </Grid>
+          </Grid>
+        )}
+
+        <DividerSeparator />
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Alert severity="warning">
-              <Typography>Selecione o fitro para gerar informações.</Typography>
+              <Typography variant="caption">
+                Selecione o fitro para gerar informações.
+              </Typography>
             </Alert>
           </Grid>
         </Grid>
