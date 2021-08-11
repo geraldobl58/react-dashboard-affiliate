@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Grid, Typography } from '@material-ui/core';
+import { Button, Grid, Typography } from '@material-ui/core';
 
 import Alert from '@material-ui/lab/Alert';
 
@@ -8,9 +8,9 @@ import api from '../../services/api';
 
 import { useMessages } from '../../hooks/Messages';
 import { useLoading } from '../../hooks/Loading';
+import { useModal } from '../../hooks/ModalCustom';
 
 import Appshell from '../../components/Appshell';
-import ButtonCustom from '../../components/ButtonCustom';
 
 import CommissionsTable from '../../template/CommissionsTable';
 import CommissionsForm from '../../template/CommissionsForm';
@@ -26,6 +26,8 @@ import {
 const Commissions = () => {
   const { setMessageAttrs } = useMessages();
   const { setIsLoading } = useLoading();
+
+  const { handleClickOpen } = useModal();
 
   const [commissions, setCommissions] = useState([]);
 
@@ -97,7 +99,9 @@ const Commissions = () => {
       <Appshell>
         <ContainerHeader>
           Comissões{' '}
-          <ButtonCustom color="secondary">Criar Comissão</ButtonCustom>
+          <Button color="secondary" onClick={handleClickOpen}>
+            Criar Comissão
+          </Button>
         </ContainerHeader>
       </Appshell>
       <ContainerMain>
