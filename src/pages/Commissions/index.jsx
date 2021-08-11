@@ -25,6 +25,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import api from '../../services/api';
 import dateFormatted from '../../utils/dateFormatted';
 
+import { useMessages } from '../../hooks/Messages';
+
 import Appshell from '../../components/Appshell';
 import ButtonCustom from '../../components/ButtonCustom';
 
@@ -38,6 +40,8 @@ import {
 import { ContainerButton, DividerSeparator, LinkCustom } from './styles';
 
 const Commissions = () => {
+  const { setMessageAttrs } = useMessages();
+
   const [commissions, setCommissions] = useState([]);
 
   const [searchComissions, setSearchComissions] = useState([]);
@@ -52,11 +56,15 @@ const Commissions = () => {
         const response = await api.get(`/comissoes`);
         setCommissions(response.data);
       } catch (err) {
-        console.log(err);
+        setMessageAttrs({
+          show: true,
+          severity: 'error',
+          text: `${err}` || 'Whoops: Houve erro no servidor!',
+        });
       }
     }
     getCommissions();
-  }, []);
+  }, [setMessageAttrs]);
 
   const resetForm = () => {
     setStartDate('');
@@ -78,7 +86,11 @@ const Commissions = () => {
       setSearchComissions(response.data);
       resetForm();
     } catch (err) {
-      console.log(err);
+      setMessageAttrs({
+        show: true,
+        severity: 'error',
+        text: `${err}` || 'Whoops: Houve erro no servidor!',
+      });
     }
   };
 
