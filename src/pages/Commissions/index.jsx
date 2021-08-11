@@ -25,6 +25,7 @@ import api from '../../services/api';
 import dateFormatted from '../../utils/dateFormatted';
 
 import { useMessages } from '../../hooks/Messages';
+import { useLoading } from '../../hooks/Loading';
 
 import Appshell from '../../components/Appshell';
 import ButtonCustom from '../../components/ButtonCustom';
@@ -40,6 +41,7 @@ import { ContainerButton, DividerSeparator } from './styles';
 
 const Commissions = () => {
   const { setMessageAttrs } = useMessages();
+  const { setIsLoading } = useLoading();
 
   const [commissions, setCommissions] = useState([]);
 
@@ -52,8 +54,10 @@ const Commissions = () => {
   useEffect(() => {
     async function getCommissions() {
       try {
+        setIsLoading(true);
         const response = await api.get(`/comissoes`);
         setCommissions(response.data);
+        setIsLoading(false);
       } catch (err) {
         setMessageAttrs({
           show: true,
@@ -63,7 +67,7 @@ const Commissions = () => {
       }
     }
     getCommissions();
-  }, [setMessageAttrs]);
+  }, [setMessageAttrs, setIsLoading]);
 
   const resetForm = () => {
     setStartDate('');
@@ -74,6 +78,7 @@ const Commissions = () => {
 
   const search = async () => {
     try {
+      setIsLoading(true);
       const response = await api.get(`/comissoes/`, {
         params: {
           dataInicial: startDate,
@@ -93,6 +98,7 @@ const Commissions = () => {
 
       setSearchComissions(response.data);
       resetForm();
+      setIsLoading(false);
     } catch (err) {
       setMessageAttrs({
         show: true,

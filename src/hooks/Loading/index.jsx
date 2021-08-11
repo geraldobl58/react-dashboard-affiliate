@@ -11,7 +11,7 @@ const LoadingStateContext = createContext(loadingContext);
 LoadingStateContext.displayName = 'LoadingStateContext';
 
 const LoadingProvider = ({ children }) => {
-  const [isLoading, , setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <LoadingStateContext.Provider value={{ isLoading, setIsLoading }}>
