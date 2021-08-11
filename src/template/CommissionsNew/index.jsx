@@ -1,12 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-import { Button, Dialog, Slide } from '@material-ui/core';
-
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import {
+  Button,
+  Dialog,
+  Slide,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from '@material-ui/core';
 
 import { useModal } from '../../hooks/ModalCustom';
 
@@ -34,11 +37,8 @@ const CommissionsNew = () => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="primary">
-          Disagree
-        </Button>
-        <Button onClick={handleClose} color="primary">
-          Agree
+        <Button onClick={handleClose} variant="contained" color="primary">
+          Criar Comissão
         </Button>
       </DialogActions>
     </Dialog>
