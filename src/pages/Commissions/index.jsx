@@ -9,20 +9,12 @@ import {
   Select,
   Button,
   Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
 } from '@material-ui/core';
 
 import Alert from '@material-ui/lab/Alert';
 import SearchIcon from '@material-ui/icons/Search';
 
 import api from '../../services/api';
-import dateFormatted from '../../utils/dateFormatted';
 
 import { useMessages } from '../../hooks/Messages';
 import { useLoading } from '../../hooks/Loading';
@@ -30,14 +22,17 @@ import { useLoading } from '../../hooks/Loading';
 import Appshell from '../../components/Appshell';
 import ButtonCustom from '../../components/ButtonCustom';
 
+import CommissionsTable from '../../template/CommissionsForm';
+
 import {
   ContainerHeader,
   ContainerMain,
   ContainerSeparator,
   ContainerWrapper,
+  DividerSeparator,
 } from '../../components/Container';
 
-import { ContainerButton, DividerSeparator } from './styles';
+import { ContainerButton } from './styles';
 
 const Commissions = () => {
   const { setMessageAttrs } = useMessages();
@@ -222,48 +217,7 @@ const Commissions = () => {
           </Grid>
         </Grid>
         <DividerSeparator />
-        {searchComissions.length > 0 && (
-          <>
-            <Typography>{`${searchComissions.length} ${
-              searchComissions.length === 1
-                ? 'comissão encontrada'
-                : 'comissões encontradas'
-            } `}</Typography>
-
-            <DividerSeparator />
-            <TableContainer component={Paper}>
-              <Table size="medium">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Tipo</TableCell>
-                    <TableCell>Descrição</TableCell>
-                    <TableCell>% Rede</TableCell>
-                    <TableCell>% Publisher</TableCell>
-                    <TableCell>Motivo</TableCell>
-                    <TableCell>Período</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {searchComissions.map((item) => (
-                    <TableRow key={item.id}>
-                      <TableCell component="th" scope="row">
-                        {item.tipo}
-                      </TableCell>
-                      <TableCell>{item.descricao}</TableCell>
-                      <TableCell>{item.rede}</TableCell>
-                      <TableCell>{item.publisher}</TableCell>
-                      <TableCell>{item.motivo}</TableCell>
-                      <TableCell>
-                        {dateFormatted(item.dataInicial)} até{' '}
-                        {dateFormatted(item.dataFinal)}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </>
-        )}
+        <CommissionsTable searchComissions={searchComissions} />
       </ContainerMain>
     </ContainerWrapper>
   );
