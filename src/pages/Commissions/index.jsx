@@ -14,6 +14,7 @@ import Appshell from '../../components/Appshell';
 
 import CommissionsTable from '../../template/CommissionsTable';
 import CommissionsForm from '../../template/CommissionsForm';
+import CommissionsNew from '../../template/CommissionsNew';
 
 import {
   ContainerHeader,
@@ -104,6 +105,7 @@ const Commissions = () => {
           </Button>
         </ContainerHeader>
       </Appshell>
+      <CommissionsNew />
       <ContainerMain>
         <ContainerSeparator />
 
