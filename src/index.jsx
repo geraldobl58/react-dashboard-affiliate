@@ -9,15 +9,18 @@ import theme from './theme';
 
 import MessageProvider from './hooks/Messages';
 import LoadingProvider from './hooks/Loading';
+import ModalCustomProvider from './hooks/ModalCustom';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <MessageProvider>
-      <LoadingProvider>
-        <CssBaseline />
-        <App />
-      </LoadingProvider>
-    </MessageProvider>
+    <ModalCustomProvider>
+      <MessageProvider>
+        <LoadingProvider>
+          <CssBaseline />
+          <App />
+        </LoadingProvider>
+      </MessageProvider>
+    </ModalCustomProvider>
   </ThemeProvider>,
   document.getElementById('root')
 );
