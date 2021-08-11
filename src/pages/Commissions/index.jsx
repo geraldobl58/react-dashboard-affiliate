@@ -82,6 +82,15 @@ const Commissions = () => {
           descricao: descriptionComission,
         },
       });
+
+      if (response.data.length === 0) {
+        setMessageAttrs({
+          show: true,
+          severity: 'error',
+          text: 'Whoops: Nenhum resultado encontrado com seu filtro!',
+        });
+      }
+
       setSearchComissions(response.data);
       resetForm();
     } catch (err) {
