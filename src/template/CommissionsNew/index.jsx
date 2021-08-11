@@ -7,8 +7,14 @@ import {
   Slide,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
+  FormControl,
+  InputLabel,
+  Grid,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
 } from '@material-ui/core';
 
 import { useModal } from '../../hooks/ModalCustom';
@@ -26,15 +32,88 @@ const CommissionsNew = () => {
       TransitionComponent={Transition}
       keepMounted
       onClose={handleClose}
+      maxWidth="md"
     >
-      <DialogTitle id="alert-dialog-slide-title">
-        Use Google location service?
+      <DialogTitle>
+        <Typography color="primary">Criar Nova Comissão</Typography>
       </DialogTitle>
-      <DialogContent>
-        <DialogContentText id="alert-dialog-slide-description">
-          Let Google help apps determine location. This means sending anonymous
-          location data to Google, even when no apps are running.
-        </DialogContentText>
+      <DialogContent style={{ minHeight: '250px' }}>
+        <Grid container spacing={3}>
+          <Grid item xs={6}>
+            <TextField
+              label="Data Inicial"
+              type="date"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              // value={startDate}
+              // onChange={(e) => setStartDate(e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              label="Data Final"
+              type="date"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              // value={endDate}
+              // onChange={(e) => setEndDate(e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <FormControl variant="outlined" style={{ width: '100%' }}>
+              <InputLabel>Tipo de Comissão</InputLabel>
+              <Select
+                // value={descriptionComission}
+                // onChange={(e) => setDescriptionComission(e.target.value)}
+                label="Descrição da Comissão"
+              >
+                <MenuItem>Menu</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              label="Descriação comissão"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              // value={endDate}
+              // onChange={(e) => setEndDate(e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <TextField
+              label="% Rede"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              // value={endDate}
+              // onChange={(e) => setEndDate(e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <TextField
+              label="% Publisher"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              // value={endDate}
+              // onChange={(e) => setEndDate(e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <TextField
+              label="Motivo"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              // value={endDate}
+              // onChange={(e) => setEndDate(e.target.value)}
+            />
+          </Grid>
+        </Grid>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} variant="contained" color="primary">
