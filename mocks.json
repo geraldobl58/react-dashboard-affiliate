@@ -69,6 +69,16 @@
       "publisher": "85",
       "motivo": "nada",
       "id": 7
+    },
+    {
+      "dataInicial": "2021-08-12",
+      "dataFinal": "2021-08-13",
+      "tipo": "vertical",
+      "descricao": "cupom",
+      "rede": "10",
+      "publisher": "20",
+      "motivo": "nada",
+      "id": 8
     }
   ]
 }
