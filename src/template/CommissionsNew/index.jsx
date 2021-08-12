@@ -14,14 +14,17 @@ import {
   MenuItem,
   Select,
   TextField,
-  Typography,
 } from '@material-ui/core';
+
+import CloseIcon from '@material-ui/icons/Close';
 
 import { useModal } from '../../hooks/ModalCustom';
 import { useMessages } from '../../hooks/Messages';
 import { useLoading } from '../../hooks/Loading';
 
 import api from '../../services/api';
+
+import { ContainerTitle } from './styles';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -40,6 +43,16 @@ const CommissionsNew = () => {
   const [publisher, setPublisher] = useState('');
   const [reason, setReason] = useState('');
 
+  const resetForm = () => {
+    setNewStartDate('');
+    setNewEndDate('');
+    setNewTypeComission('');
+    setNewDescriptionComission('');
+    setNetwork('');
+    setPublisher('');
+    setReason('');
+  };
+
   const saveCommision = async () => {
     try {
       setIsLoading(true);
@@ -52,6 +65,7 @@ const CommissionsNew = () => {
         publisher,
         motivo: reason.toLowerCase(),
       });
+      resetForm();
       setIsLoading(false);
 
       setMessageAttrs({
@@ -68,6 +82,12 @@ const CommissionsNew = () => {
     }
   };
 
+  const closeModalReload = () => {
+    handleClose();
+
+    window.location.reload();
+  };
+
   return (
     <Dialog
       open={modalOpen}
@@ -77,7 +97,12 @@ const CommissionsNew = () => {
       maxWidth="md"
     >
       <DialogTitle>
-        <Typography color="primary">Criar Nova Comissão</Typography>
+        <ContainerTitle>
+          <strong>Criar Nova Comissão</strong>
+          <span>
+            <CloseIcon color="primary" onClick={closeModalReload} />
+          </span>
+        </ContainerTitle>
       </DialogTitle>
       <DialogContent style={{ minHeight: '250px' }}>
         <Grid container spacing={3}>

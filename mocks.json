@@ -39,6 +39,36 @@
       "publisher": "100",
       "motivo": "natal",
       "id": 4
+    },
+    {
+      "dataInicial": "2021-08-12",
+      "dataFinal": "2021-08-13",
+      "tipo": "marca",
+      "descricao": "brastemp",
+      "rede": "200",
+      "publisher": "500",
+      "motivo": "ano novo",
+      "id": 5
+    },
+    {
+      "dataInicial": "2021-08-12",
+      "dataFinal": "2021-08-13",
+      "tipo": "departamento",
+      "descricao": "informatica",
+      "rede": "600",
+      "publisher": "800",
+      "motivo": "ação de graça",
+      "id": 6
+    },
+    {
+      "dataInicial": "2021-08-12",
+      "dataFinal": "2021-08-13",
+      "tipo": "marca",
+      "descricao": "samsung",
+      "rede": "5",
+      "publisher": "85",
+      "motivo": "nada",
+      "id": 7
     }
   ]
 }

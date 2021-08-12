@@ -84,7 +84,6 @@ const Commissions = () => {
       }
 
       setSearchComissions(response.data);
-      resetForm();
       setIsLoading(false);
     } catch (err) {
       setMessageAttrs({
