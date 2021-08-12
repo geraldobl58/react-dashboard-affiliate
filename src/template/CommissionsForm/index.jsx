@@ -13,6 +13,8 @@ import {
 
 import SearchIcon from '@material-ui/icons/Search';
 
+import wordUpper from '../../utils/wordToUpper';
+
 import { ContainerButton } from './styles';
 
 const CommissionsForm = ({
@@ -65,7 +67,7 @@ const CommissionsForm = ({
             >
               {commissions.map((item) => (
                 <MenuItem key={item.id} value={item.tipo}>
-                  {item.tipo}
+                  {wordUpper(item.tipo)}
                 </MenuItem>
               ))}
             </Select>
@@ -81,7 +83,7 @@ const CommissionsForm = ({
             >
               {commissions.map((item) => (
                 <MenuItem key={item.id} value={item.descricao}>
-                  {item.descricao}
+                  {wordUpper(item.descricao)}
                 </MenuItem>
               ))}
             </Select>

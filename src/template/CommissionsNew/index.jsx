@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   Button,
@@ -18,6 +18,10 @@ import {
 } from '@material-ui/core';
 
 import { useModal } from '../../hooks/ModalCustom';
+import { useMessages } from '../../hooks/Messages';
+import { useLoading } from '../../hooks/Loading';
+
+import api from '../../services/api';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -25,6 +29,44 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const CommissionsNew = () => {
   const { modalOpen, handleClose } = useModal();
+  const { setMessageAttrs } = useMessages();
+  const { setIsLoading } = useLoading();
+
+  const [newStartDate, setNewStartDate] = useState('');
+  const [newEndDate, setNewEndDate] = useState('');
+  const [newTypeComission, setNewTypeComission] = useState('');
+  const [newDescriptionComission, setNewDescriptionComission] = useState('');
+  const [network, setNetwork] = useState('');
+  const [publisher, setPublisher] = useState('');
+  const [reason, setReason] = useState('');
+
+  const saveCommision = async () => {
+    try {
+      setIsLoading(true);
+      await api.post(`/comissoes`, {
+        dataInicial: newStartDate,
+        dataFinal: newEndDate,
+        tipo: newTypeComission,
+        descricao: newDescriptionComission.toLowerCase(),
+        rede: network,
+        publisher,
+        motivo: reason.toLowerCase(),
+      });
+      setIsLoading(false);
+
+      setMessageAttrs({
+        show: true,
+        severity: 'success',
+        text: 'Sucesso: Registro salvo com sucesso.',
+      });
+    } catch (err) {
+      setMessageAttrs({
+        show: true,
+        severity: 'error',
+        text: `${err}` || 'Whoops: Houve erro no servidor!',
+      });
+    }
+  };
 
   return (
     <Dialog
@@ -46,8 +88,8 @@ const CommissionsNew = () => {
               InputLabelProps={{
                 shrink: true,
               }}
-              // value={startDate}
-              // onChange={(e) => setStartDate(e.target.value)}
+              value={newStartDate}
+              onChange={(e) => setNewStartDate(e.target.value)}
             />
           </Grid>
           <Grid item xs={6}>
@@ -57,19 +99,24 @@ const CommissionsNew = () => {
               InputLabelProps={{
                 shrink: true,
               }}
-              // value={endDate}
-              // onChange={(e) => setEndDate(e.target.value)}
+              value={newEndDate}
+              onChange={(e) => setNewEndDate(e.target.value)}
             />
           </Grid>
           <Grid item xs={6}>
             <FormControl variant="outlined" style={{ width: '100%' }}>
               <InputLabel>Tipo de Comissão</InputLabel>
               <Select
-                // value={descriptionComission}
-                // onChange={(e) => setDescriptionComission(e.target.value)}
-                label="Descrição da Comissão"
+                value={newTypeComission}
+                onChange={(e) => setNewTypeComission(e.target.value)}
+                label="Tipo de Comissão"
               >
-                <MenuItem>Menu</MenuItem>
+                <MenuItem value="sku">Sku</MenuItem>
+                <MenuItem value="marca">Marca</MenuItem>
+                <MenuItem value="departamento">Departamento</MenuItem>
+                <MenuItem value="vertical">Vertical</MenuItem>
+                <MenuItem value="publisher">Publisher</MenuItem>
+                <MenuItem value="rede">Rede</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -79,8 +126,8 @@ const CommissionsNew = () => {
               InputLabelProps={{
                 shrink: true,
               }}
-              // value={endDate}
-              // onChange={(e) => setEndDate(e.target.value)}
+              value={newDescriptionComission}
+              onChange={(e) => setNewDescriptionComission(e.target.value)}
             />
           </Grid>
           <Grid item xs={4}>
@@ -89,8 +136,8 @@ const CommissionsNew = () => {
               InputLabelProps={{
                 shrink: true,
               }}
-              // value={endDate}
-              // onChange={(e) => setEndDate(e.target.value)}
+              value={network}
+              onChange={(e) => setNetwork(e.target.value)}
             />
           </Grid>
           <Grid item xs={4}>
@@ -99,8 +146,8 @@ const CommissionsNew = () => {
               InputLabelProps={{
                 shrink: true,
               }}
-              // value={endDate}
-              // onChange={(e) => setEndDate(e.target.value)}
+              value={publisher}
+              onChange={(e) => setPublisher(e.target.value)}
             />
           </Grid>
           <Grid item xs={4}>
@@ -109,14 +156,14 @@ const CommissionsNew = () => {
               InputLabelProps={{
                 shrink: true,
               }}
-              // value={endDate}
-              // onChange={(e) => setEndDate(e.target.value)}
+              value={reason}
+              onChange={(e) => setReason(e.target.value)}
             />
           </Grid>
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} variant="contained" color="primary">
+        <Button onClick={saveCommision} variant="contained" color="primary">
           Criar Comissão
         </Button>
       </DialogActions>

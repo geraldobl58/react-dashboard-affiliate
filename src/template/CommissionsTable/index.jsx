@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 
 import dateFormatted from '../../utils/dateFormatted';
+import wordUpper from '../../utils/wordToUpper';
 
 import { DividerSeparator } from '../../components/Container';
 
@@ -44,12 +45,12 @@ const CommissionsTable = ({ searchComissions }) => {
                 {searchComissions.map((item) => (
                   <TableRow key={item.id}>
                     <TableCell component="th" scope="row">
-                      {item.tipo}
+                      {wordUpper(item.tipo)}
                     </TableCell>
-                    <TableCell>{item.descricao}</TableCell>
+                    <TableCell>{wordUpper(item.descricao)}</TableCell>
                     <TableCell>{item.rede}</TableCell>
                     <TableCell>{item.publisher}</TableCell>
-                    <TableCell>{item.motivo}</TableCell>
+                    <TableCell>{wordUpper(item.motivo)}</TableCell>
                     <TableCell>
                       {dateFormatted(item.dataInicial)} até{' '}
                       {dateFormatted(item.dataFinal)}
