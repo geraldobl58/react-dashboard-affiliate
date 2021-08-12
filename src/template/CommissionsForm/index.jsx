@@ -30,6 +30,20 @@ const CommissionsForm = ({
   resetForm,
   search,
 }) => {
+  const removeDuplicate = commissions;
+
+  const uniqueWordType = Array.from(
+    new Set(removeDuplicate.map((a) => a.tipo))
+  ).map((id) => {
+    return removeDuplicate.find((a) => a.tipo === id);
+  });
+
+  const uniqueWordDescription = Array.from(
+    new Set(removeDuplicate.map((a) => a.descricao))
+  ).map((id) => {
+    return removeDuplicate.find((a) => a.descricao === id);
+  });
+
   return (
     <>
       <Grid container spacing={3}>
@@ -65,11 +79,13 @@ const CommissionsForm = ({
               onChange={(e) => setTypeComission(e.target.value)}
               label="Tipo de Comissão"
             >
-              {commissions.map((item) => (
-                <MenuItem key={item.id} value={item.tipo}>
-                  {wordUpper(item.tipo)}
-                </MenuItem>
-              ))}
+              {uniqueWordType.map((item) => {
+                return (
+                  <MenuItem key={item.id} value={item.tipo}>
+                    {wordUpper(item.tipo)}
+                  </MenuItem>
+                );
+              })}
             </Select>
           </FormControl>
         </Grid>
@@ -81,7 +97,7 @@ const CommissionsForm = ({
               onChange={(e) => setDescriptionComission(e.target.value)}
               label="Descrição da Comissão"
             >
-              {commissions.map((item) => (
+              {uniqueWordDescription.map((item) => (
                 <MenuItem key={item.id} value={item.descricao}>
                   {wordUpper(item.descricao)}
                 </MenuItem>

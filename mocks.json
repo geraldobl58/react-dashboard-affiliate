@@ -19,6 +19,26 @@
       "publisher": "30",
       "motivo": "dia dos pais",
       "id": 2
+    },
+    {
+      "dataInicial": "2021-08-12",
+      "dataFinal": "2021-08-13",
+      "tipo": "marca",
+      "descricao": "cupom",
+      "rede": "30",
+      "publisher": "40",
+      "motivo": "teste",
+      "id": 3
+    },
+    {
+      "dataInicial": "2021-08-12",
+      "dataFinal": "2021-08-13",
+      "tipo": "marca",
+      "descricao": "cashback",
+      "rede": "50",
+      "publisher": "100",
+      "motivo": "natal",
+      "id": 4
     }
   ]
 }
