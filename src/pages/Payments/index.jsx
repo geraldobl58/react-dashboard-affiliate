@@ -211,19 +211,21 @@ const Payments = () => {
         </Grid>
         <DividerSeparator />
         <ContainerTable>
-          <MUIDataTable
-            title={
-              <Typography variant="caption">
-                {paymentSearch.length}{' '}
-                {paymentSearch.length === 1
-                  ? 'item encontrado'
-                  : 'itens encontrados'}
-              </Typography>
-            }
-            data={paymentSearch}
-            columns={columns}
-            options={options}
-          />
+          {paymentSearch.length > 0 && (
+            <MUIDataTable
+              title={
+                <Typography variant="caption">
+                  {paymentSearch.length}{' '}
+                  {paymentSearch.length === 1
+                    ? 'item encontrado'
+                    : 'itens encontrados'}
+                </Typography>
+              }
+              data={paymentSearch}
+              columns={columns}
+              options={options}
+            />
+          )}
         </ContainerTable>
       </ContainerMain>
     </ContainerWrapper>
