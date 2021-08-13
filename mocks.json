@@ -80,5 +80,18 @@
       "motivo": "nada",
       "id": 8
     }
+  ],
+  "pagamentos": [
+    {
+      "id": 1,
+      "bandeira": "starck",
+      "publisher": "cuponmania",
+      "transactionId": "198956256",
+      "sku": "14588184455",
+      "vendaUnidade": 660,
+      "comissao": 6.50,
+      "comissaoValor": 42.90,
+      "status": "aprovado"
+    }
   ]
 }

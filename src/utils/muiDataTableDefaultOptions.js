@@ -3,6 +3,7 @@ const options = {
   filter: false,
   print: false,
   download: false,
+  pagination: false,
   textLabels: {
     body: {
       noMatch: 'Nenhum item encontrado',
