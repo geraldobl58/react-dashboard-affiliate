@@ -84,14 +84,42 @@
   "pagamentos": [
     {
       "id": 1,
-      "bandeira": "starck",
+      "bandeira": "stark",
       "publisher": "cuponmania",
       "transactionId": "198956256",
       "sku": "14588184455",
       "vendaUnidade": 660,
       "comissao": 6.50,
       "comissaoValor": 42.90,
-      "status": "aprovado"
+      "status": "aprovado",
+      "dataInicial": "2021-08-12",
+      "dataFinal": "2021-08-13"
+    },
+    {
+      "id": 2,
+      "bandeira": "lannister",
+      "publisher": "marca",
+      "transactionId": "46546546544",
+      "sku": "123115444",
+      "vendaUnidade": 960,
+      "comissao": 15.50,
+      "comissaoValor": 59.90,
+      "status": "aprovado",
+      "dataInicial": "2021-08-13",
+      "dataFinal": "2021-08-14"
+    },
+    {
+      "id": 3,
+      "bandeira": "targaryen",
+      "publisher": "vertical",
+      "transactionId": "544564315",
+      "sku": "4884245457",
+      "vendaUnidade": 900,
+      "comissao": 20.50,
+      "comissaoValor": 15.90,
+      "status": "aprovado",
+      "dataInicial": "2021-08-15",
+      "dataFinal": "2021-08-16"
     }
   ]
 }

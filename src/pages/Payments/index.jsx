@@ -8,6 +8,7 @@ import {
   FormControl,
   Select,
   Button,
+  Typography,
 } from '@material-ui/core';
 
 import SearchIcon from '@material-ui/icons/Search';
@@ -21,6 +22,7 @@ import Appshell from '../../components/Appshell';
 
 import columns from './tableHeadCells';
 import options from '../../utils/muiDataTableDefaultOptions';
+import wordUpper from '../../utils/wordToUpper';
 
 import api from '../../services/api';
 
@@ -31,20 +33,25 @@ import {
   DividerSeparator,
 } from '../../components/Container';
 
-import { ContainerButton } from './styles';
+import { ContainerButton, ContainerTable } from './styles';
 
 const Payments = () => {
   const { setMessageAttrs } = useMessages();
   const { setIsLoading } = useLoading();
 
+  const [paymentSearch, setPaymentSearch] = useState([]);
   const [payments, setPayments] = useState([]);
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [flag, setFlag] = useState('');
+  const [publisher, setPublisher] = useState('');
+  const [sku, setSku] = useState('');
 
   useEffect(() => {
     async function getPayments() {
       try {
         setIsLoading(true);
         const response = await api.get(`/pagamentos/`);
-        console.log(response.data);
         setPayments(response.data);
         setIsLoading(false);
       } catch (err) {
@@ -57,6 +64,46 @@ const Payments = () => {
     }
     getPayments();
   }, [setIsLoading, setMessageAttrs]);
+
+  const resetForm = () => {
+    setStartDate('');
+    setEndDate('');
+    setFlag('');
+    setPublisher('');
+    setSku('');
+  };
+
+  const search = async () => {
+    try {
+      setIsLoading(true);
+      const response = await api.get(`/pagamentos/`, {
+        params: {
+          dataInicial: startDate,
+          dataFinal: endDate,
+          bandeira: flag,
+          publisher,
+          sku,
+        },
+      });
+
+      if (response.data.length === 0) {
+        setMessageAttrs({
+          show: true,
+          severity: 'error',
+          text: 'Whoops: Nenhum resultado encontrado com seu filtro!',
+        });
+      }
+
+      setPaymentSearch(response.data);
+      setIsLoading(false);
+    } catch (err) {
+      setMessageAttrs({
+        show: true,
+        severity: 'error',
+        text: `${err}` || 'Whoops: Houve erro no servidor!',
+      });
+    }
+  };
 
   return (
     <ContainerWrapper>
@@ -73,8 +120,8 @@ const Payments = () => {
               InputLabelProps={{
                 shrink: true,
               }}
-              // value={startDate}
-              // onChange={(e) => setStartDate(e.target.value)}
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
             />
           </Grid>
           <Grid item xs={3}>
@@ -85,19 +132,23 @@ const Payments = () => {
               InputLabelProps={{
                 shrink: true,
               }}
-              // value={endDate}
-              // onChange={(e) => setEndDate(e.target.value)}
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
             />
           </Grid>
           <Grid item xs={2}>
             <FormControl variant="outlined" style={{ width: '100%' }}>
               <InputLabel>Bandeira</InputLabel>
               <Select
-                // value={typeComission}
-                // onChange={(e) => setTypeComission(e.target.value)}
+                value={flag}
+                onChange={(e) => setFlag(e.target.value)}
                 label="Bandeira"
               >
-                <MenuItem>Menu</MenuItem>
+                {payments.map((item) => (
+                  <MenuItem key={item.id} value={item.bandeira}>
+                    {wordUpper(item.bandeira)}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </Grid>
@@ -105,11 +156,15 @@ const Payments = () => {
             <FormControl variant="outlined" style={{ width: '100%' }}>
               <InputLabel>Publisher</InputLabel>
               <Select
-                // value={descriptionComission}
-                // onChange={(e) => setDescriptionComission(e.target.value)}
+                value={publisher}
+                onChange={(e) => setPublisher(e.target.value)}
                 label="Publisher"
               >
-                <MenuItem>Menu</MenuItem>
+                {payments.map((item) => (
+                  <MenuItem key={item.id} value={item.publisher}>
+                    {wordUpper(item.publisher)}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </Grid>
@@ -117,11 +172,15 @@ const Payments = () => {
             <FormControl variant="outlined" style={{ width: '100%' }}>
               <InputLabel>Sku</InputLabel>
               <Select
-                // value={descriptionComission}
-                // onChange={(e) => setDescriptionComission(e.target.value)}
+                value={sku}
+                onChange={(e) => setSku(e.target.value)}
                 label="Sku"
               >
-                <MenuItem>Menu</MenuItem>
+                {payments.map((item) => (
+                  <MenuItem key={item.id} value={item.sku}>
+                    {item.sku}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </Grid>
@@ -133,13 +192,8 @@ const Payments = () => {
                 variant="outlined"
                 color="secondary"
                 style={{ marginRight: '20px' }}
-                // onClick={resetForm}
-                // disabled={
-                //   !startDate ||
-                //   !endDate ||
-                //   !typeComission ||
-                //   !descriptionComission
-                // }
+                onClick={resetForm}
+                disabled={!startDate || !endDate || !flag || !publisher || !sku}
               >
                 Limpar
               </Button>
@@ -147,13 +201,8 @@ const Payments = () => {
                 variant="contained"
                 color="primary"
                 startIcon={<SearchIcon />}
-                // onClick={search}
-                // disabled={
-                //   !startDate ||
-                //   !endDate ||
-                //   !typeComission ||
-                //   !descriptionComission
-                // }
+                onClick={search}
+                disabled={!startDate || !endDate || !flag || !publisher || !sku}
               >
                 Buscar
               </Button>
@@ -161,12 +210,21 @@ const Payments = () => {
           </Grid>
         </Grid>
         <DividerSeparator />
-        <MUIDataTable
-          title="4 items encontrados"
-          data={payments}
-          columns={columns}
-          options={options}
-        />
+        <ContainerTable>
+          <MUIDataTable
+            title={
+              <Typography variant="caption">
+                {paymentSearch.length}{' '}
+                {paymentSearch.length === 1
+                  ? 'item encontrado'
+                  : 'itens encontrados'}
+              </Typography>
+            }
+            data={paymentSearch}
+            columns={columns}
+            options={options}
+          />
+        </ContainerTable>
       </ContainerMain>
     </ContainerWrapper>
   );
