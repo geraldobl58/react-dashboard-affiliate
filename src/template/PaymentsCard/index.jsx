@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Grid, Typography } from '@material-ui/core';
 
 import wordUpper from '../../utils/wordToUpper';
+import priceFormatted from '../../utils/priceFormatted';
 
 import { ContainerCard } from './styles';
 
@@ -22,19 +23,25 @@ const PaymentsCard = ({ paymentSearch }) => {
               <Typography variant="body2" component="p">
                 Valor Venda Total
               </Typography>
-              <Typography variant="h6">{item.valorVendaTotal}</Typography>
+              <Typography variant="h6">
+                {priceFormatted(item.valorVendaTotal)}
+              </Typography>
             </Grid>
             <Grid item xs={4}>
               <Typography variant="body2" component="p">
                 Valor Venda Aprovado
               </Typography>
-              <Typography variant="h6">{item.valorVendaAprovado}</Typography>
+              <Typography variant="h6">
+                {priceFormatted(item.valorVendaAprovado)}
+              </Typography>
             </Grid>
             <Grid item xs={4}>
               <Typography variant="body2" component="p">
                 Investimento
               </Typography>
-              <Typography variant="h6">{item.investimento}</Typography>
+              <Typography variant="h6">
+                {priceFormatted(item.investimento)}
+              </Typography>
             </Grid>
 
             <Grid item xs={4}>
