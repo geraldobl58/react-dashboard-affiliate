@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import { Grid, Typography, Card, CardContent } from '@material-ui/core';
-
 import { useMessages } from '../../hooks/Messages';
 import { useLoading } from '../../hooks/Loading';
 
@@ -19,7 +17,7 @@ import {
   DividerSeparator,
 } from '../../components/Container';
 
-import { ContainerCard } from './styles';
+import PaymentsCard from '../../template/PaymentsCard';
 
 const Payments = () => {
   const { setMessageAttrs } = useMessages();
@@ -113,52 +111,7 @@ const Payments = () => {
           search={search}
         />
         <DividerSeparator />
-        <Grid>
-          <Grid container spacing={3}>
-            {paymentSearch.map((item) => (
-              <Grid item xs={12} key={item.id}>
-                <ContainerCard>
-                  <Card>
-                    <CardContent>
-                      <Typography variant="h5" component="h2">
-                        Bandeira: {item.bandeira}
-                      </Typography>
-                      <Typography variant="body2" component="p">
-                        Valor Venda Total
-                      </Typography>
-                      <Typography variant="h6">
-                        {item.valorVendaTotal}
-                      </Typography>
-                      <Typography variant="body2" component="p">
-                        Valor Venda Aprovado
-                      </Typography>
-                      <Typography variant="h6">
-                        {item.valorVendaAprovado}
-                      </Typography>
-                      <Typography variant="body2" component="p">
-                        Investimento
-                      </Typography>
-                      <Typography variant="h6">{item.investimento}</Typography>
-                      <Typography variant="body2" component="p">
-                        Aprovado
-                      </Typography>
-                      <Typography variant="h6">{item.aprovado}</Typography>
-                      <Typography variant="body2" component="p">
-                        ROAS
-                      </Typography>
-                      <Typography variant="h6">{item.roas}</Typography>
-                      <Typography variant="body2" component="p">
-                        Visitas
-                      </Typography>
-                      <Typography variant="h6">{item.visitas}</Typography>
-                    </CardContent>
-                  </Card>
-                </ContainerCard>
-              </Grid>
-            ))}
-          </Grid>
-        </Grid>
-
+        <PaymentsCard paymentSearch={paymentSearch} />
         <DividerSeparator />
         <PaymentsTable paymentSearch={paymentSearch} />
       </ContainerMain>
