@@ -8,3 +8,7 @@ export const ContainerButton = styled.div`
 export const ContainerTable = styled.div`
   text-transform: capitalize;
 `;
+
+export const ContainerCard = styled.div`
+  text-transform: capitalize;
+`;

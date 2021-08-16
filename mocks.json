@@ -93,7 +93,13 @@
       "comissaoValor": 42.90,
       "status": "aprovado",
       "dataInicial": "2021-08-12",
-      "dataFinal": "2021-08-13"
+      "dataFinal": "2021-08-13",
+      "valorVendaTotal": "950.30",
+      "valorVendaAprovado": "480.50",
+      "investimento": "180.60",
+      "aprovado": 69,
+      "roas": 27.57,
+      "visitas": 1245
     },
     {
       "id": 2,
@@ -106,7 +112,13 @@
       "comissaoValor": 59.90,
       "status": "aprovado",
       "dataInicial": "2021-08-13",
-      "dataFinal": "2021-08-14"
+      "dataFinal": "2021-08-14",
+      "valorVendaTotal": "850.30",
+      "valorVendaAprovado": "380.50",
+      "investimento": "80.60",
+      "aprovado": 70,
+      "roas": 77.57,
+      "visitas": 80
     },
     {
       "id": 3,
@@ -119,7 +131,13 @@
       "comissaoValor": 15.90,
       "status": "aprovado",
       "dataInicial": "2021-08-15",
-      "dataFinal": "2021-08-16"
+      "dataFinal": "2021-08-16",
+      "valorVendaTotal": "150.30",
+      "valorVendaAprovado": "80.50",
+      "investimento": "40.60",
+      "aprovado": 120,
+      "roas": 97.57,
+      "visitas": 952
     }
   ]
 }
