@@ -2,17 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 import { Grid, Typography, Card, CardContent } from '@material-ui/core';
 
-import MUIDataTable from 'mui-datatables';
-
 import { useMessages } from '../../hooks/Messages';
 import { useLoading } from '../../hooks/Loading';
 
 import Appshell from '../../components/Appshell';
 
 import PaymentsForm from '../../template/PaymentsForm';
-
-import columns from './tableHeadCells';
-import options from '../../utils/muiDataTableDefaultOptions';
+import PaymentsTable from '../../template/PaymentsTable';
 
 import api from '../../services/api';
 
@@ -23,7 +19,7 @@ import {
   DividerSeparator,
 } from '../../components/Container';
 
-import { ContainerTable, ContainerCard } from './styles';
+import { ContainerCard } from './styles';
 
 const Payments = () => {
   const { setMessageAttrs } = useMessages();
@@ -164,23 +160,7 @@ const Payments = () => {
         </Grid>
 
         <DividerSeparator />
-        <ContainerTable>
-          {paymentSearch.length > 0 && (
-            <MUIDataTable
-              title={
-                <Typography variant="caption">
-                  {paymentSearch.length}{' '}
-                  {paymentSearch.length === 1
-                    ? 'item encontrado'
-                    : 'itens encontrados'}
-                </Typography>
-              }
-              data={paymentSearch}
-              columns={columns}
-              options={options}
-            />
-          )}
-        </ContainerTable>
+        <PaymentsTable paymentSearch={paymentSearch} />
       </ContainerMain>
     </ContainerWrapper>
   );
