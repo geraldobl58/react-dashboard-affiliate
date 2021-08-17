@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import {
-  Grid,
-  TextField,
-  Button,
   Paper,
   Table,
   TableBody,
@@ -14,8 +11,6 @@ import {
   TableRow,
   Typography,
 } from '@material-ui/core';
-
-import SearchIcon from '@material-ui/icons/Search';
 
 import { useMessages } from '../../hooks/Messages';
 import { useLoading } from '../../hooks/Loading';
@@ -31,7 +26,7 @@ import {
 
 import api from '../../services/api';
 
-import { ContainerButton } from './styles';
+import HistoricForm from '../../template/HistoricForm';
 
 const Historic = () => {
   const { setMessageAttrs } = useMessages();
@@ -81,56 +76,14 @@ const Historic = () => {
       <Appshell>Histórico</Appshell>
       <ContainerMain>
         <ContainerSeparator />
-        <Grid container spacing={3}>
-          <Grid item xs={6}>
-            <TextField
-              id="date"
-              label="Data Inicial"
-              type="date"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField
-              id="date"
-              label="Data Final"
-              type="date"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-            />
-          </Grid>
-        </Grid>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <ContainerButton>
-              <Button
-                variant="outlined"
-                color="secondary"
-                style={{ marginRight: '20px' }}
-                onClick={resetForm}
-                disabled={!startDate || !endDate}
-              >
-                Limpar
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                startIcon={<SearchIcon />}
-                onClick={search}
-                disabled={!startDate || !endDate}
-              >
-                Buscar
-              </Button>
-            </ContainerButton>
-          </Grid>
-        </Grid>
+        <HistoricForm
+          startDate={startDate}
+          setStartDate={setStartDate}
+          endDate={endDate}
+          setEndDate={setEndDate}
+          resetForm={resetForm}
+          search={search}
+        />
         <ContainerSeparator />
         {searchHistorics.length > 0 && (
           <>
