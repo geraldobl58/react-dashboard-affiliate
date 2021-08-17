@@ -170,7 +170,7 @@ const Historic = () => {
                       <TableCell>{item.usuario}</TableCell>
                       <TableCell>{item.observacao}</TableCell>
                       <TableCell>
-                        <Link to="/">detalhes</Link>
+                        <Link to={`/historico/${item.id}`}>detalhes</Link>
                       </TableCell>
                     </TableRow>
                   ))}
