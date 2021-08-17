@@ -139,5 +139,43 @@
       "roas": 97.57,
       "visitas": 952
     }
+  ],
+  "encerrados": [
+    {
+      "id": 1,
+      "dataInicial": "2021-08-12",
+      "dataFinal": "2021-08-13",
+      "receita": 982.90,
+      "comissao": 69.90,
+      "taxaMedia": 34,
+      "roas": 27.67,
+      "encerrado": "2021-08-11",
+      "usuario": "jon doe",
+      "observacao": "top seller"
+    },
+    {
+      "id": 2,
+      "dataInicial": "2021-08-12",
+      "dataFinal": "2021-08-13",
+      "receita": 503.70,
+      "comissao": 89.90,
+      "taxaMedia": 22,
+      "roas": 35.17,
+      "encerrado": "2021-08-11",
+      "usuario": "jane doe",
+      "observacao": "residual de pedidos"
+    },
+    {
+      "id": 3,
+      "dataInicial": "2021-08-12",
+      "dataFinal": "2021-08-13",
+      "receita": 182.90,
+      "comissao": 9.90,
+      "taxaMedia": 3,
+      "roas": 12.67,
+      "encerrado": "2021-08-11",
+      "usuario": "jon doe",
+      "observacao": "top seller"
+    }
   ]
 }

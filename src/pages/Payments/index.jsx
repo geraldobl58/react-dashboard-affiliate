@@ -7,6 +7,7 @@ import Appshell from '../../components/Appshell';
 
 import PaymentsForm from '../../template/PaymentsForm';
 import PaymentsTable from '../../template/PaymentsTable';
+import PaymentsCard from '../../template/PaymentsCard';
 
 import api from '../../services/api';
 
@@ -16,8 +17,6 @@ import {
   ContainerWrapper,
   DividerSeparator,
 } from '../../components/Container';
-
-import PaymentsCard from '../../template/PaymentsCard';
 
 const Payments = () => {
   const { setMessageAttrs } = useMessages();
