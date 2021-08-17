@@ -13,6 +13,10 @@ import {
   Typography,
 } from '@material-ui/core';
 
+import dateFormatted from '../../utils/dateFormatted';
+import priceFormatted from '../../utils/priceFormatted';
+import wordUpper from '../../utils/wordToUpper';
+
 import { DividerSeparator } from '../../components/Container';
 
 const HistoricTable = ({ searchHistorics }) => {
@@ -46,15 +50,16 @@ const HistoricTable = ({ searchHistorics }) => {
                 {searchHistorics.map((item) => (
                   <TableRow key={item.id}>
                     <TableCell component="th" scope="row">
-                      {item.dataInicial}
+                      {dateFormatted(item.dataInicial)} até{' '}
+                      {dateFormatted(item.dataFinal)}
                     </TableCell>
-                    <TableCell>{item.dataFinal}</TableCell>
-                    <TableCell>{item.comissao}</TableCell>
-                    <TableCell>{item.taxaMedia}</TableCell>
+                    <TableCell>{item.receita}</TableCell>
+                    <TableCell>{priceFormatted(item.comissao)}</TableCell>
+                    <TableCell>{item.taxaMedia}%</TableCell>
                     <TableCell>{item.roas}</TableCell>
-                    <TableCell>{item.encerrado}</TableCell>
-                    <TableCell>{item.usuario}</TableCell>
-                    <TableCell>{item.observacao}</TableCell>
+                    <TableCell>{dateFormatted(item.encerrado)}</TableCell>
+                    <TableCell>{wordUpper(item.usuario)}</TableCell>
+                    <TableCell>{wordUpper(item.observacao)}</TableCell>
                     <TableCell>
                       <Link to={`/historico/${item.id}`}>detalhes</Link>
                     </TableCell>
