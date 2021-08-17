@@ -10,6 +10,8 @@ import Appshell from '../../components/Appshell';
 
 import api from '../../services/api';
 
+import priceFormatted from '../../utils/priceFormatted';
+
 import {
   ContainerMain,
   ContainerSeparator,
@@ -58,11 +60,13 @@ const HistoricSingle = () => {
           </Grid>
           <Grid item xs={2}>
             <Typography variant="caption">Receita</Typography>
-            <Typography variant="subtitle1">{historic.receita}</Typography>
+            <Typography variant="subtitle1">
+              {priceFormatted(historic.receita)}
+            </Typography>
           </Grid>
           <Grid item xs={2}>
             <Typography variant="caption">Taxa Média</Typography>
-            <Typography variant="subtitle1">{historic.taxaMedia}</Typography>
+            <Typography variant="subtitle1">{historic.taxaMedia}%</Typography>
           </Grid>
           <Grid item xs={2}>
             <Typography variant="caption">Encerrado</Typography>
